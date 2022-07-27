@@ -1,25 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import Main from './components/Main';
+import Sidebar from './components/Sidebar';
+import styled from 'styled-components';
+import {MapProvider} from 'react-map-gl';
+
+const mapboxAccessToken = process.env.REACT_APP_Mapbox_Access_Token;
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Cotainer>
+      <MapProvider>
+        <Main mapboxAccessToken={mapboxAccessToken}/>
+        <Sidebar mapboxAccessToken={mapboxAccessToken}/>
+      </MapProvider>
+    </Cotainer>
   );
+
 }
 
 export default App;
+
+const Cotainer = styled.div`
+  /* background-color: aqua; */
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 9fr 3fr;
+`
